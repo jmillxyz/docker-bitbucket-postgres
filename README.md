@@ -1,43 +1,43 @@
-# docker-stash-postgres
+# docker-bitbucket-postgres
 
-A PostgreSQL container ready to be used with [docker-stash](https://github.com/ahaasler/docker-stash "A Docker image for Stash").
+A PostgreSQL container ready to be used with [docker-bitbucket](https://github.com/jondelmil/docker-bitbucket "A Docker image for Bitbucket").
 
 ## Usage
 
 1. Create and name the database container:
 
 	```bash
-docker run --name stash-postgres -d ahaasler/stash-postgres
+docker run --name bitbucket-postgres -d jondelmil/docker-bitbucket-postgres
 	```
 
-2. Use it in the Stash container:
+2. Use it in the Bitbucket Server container:
 
 	```bash
-docker run --name stash --link stash-postgres:stash-postgres -d -p 7990:7990 -p 7999:7999 ahaasler/stash
+docker run --name bitbucket --link bitbucket-postgres:bitbucket-postgres -d -p 7990:7990 -p 7999:7999 jondelmil/docker-bitbucket
 	```
 
-3. Connect your Stash instance following the Atlassian documentation: [Connecting Stash to PostgreSQL](https://confluence.atlassian.com/display/STASH/Connecting+Stash+to+PostgreSQL#ConnectingStashtoPostgreSQL-ConnectStashtothePostgreSQLdatabase "Connecting Stash to PostgreSQL").
+3. Connect your Bitbucket Server instance following the Atlassian documentation: [Connecting Bitbucket Server to PostgreSQL](https://confluence.atlassian.com/bitbucketserver/connecting-bitbucket-server-to-postgresql-776640389.html "Connecting Bitbucket Server to PostgreSQL").
 	* _Database Type_: PostgreSQL.
-	* _Hostname_: stash-postgres (the name of the link between containers).
+	* _Hostname_: bitbucket-postgres (the name of the link between containers).
 	* _Port_: 5432.
-	* _Database name_: stashdb (or the one specified as STASH_DB_NAME).
-	* _Database username_: stash (or the one specified as STASH_DB_USER).
-	* _Database password_: password (or the one specified as STASH_DB_PASS).
+	* _Database name_: bitbucketdb (or the one specified as BITBUCKET_DB_NAME).
+	* _Database username_: bitbucket (or the one specified as BITBUCKET_DB_USER).
+	* _Database password_: password (or the one specified as BITBUCKET_DB_PASS).
 
-> See [docker-stash](https://github.com/ahaasler/docker-stash "A Docker image for Stash") for more information on the stash container.
+> See [docker-bitbucket](https://github.com/jondelmil/docker-bitbucket "A Docker image for Bitbucket") for more information on the bitbucket container.
 
 ### Parameters
 
-You can use these environment variables to configure your stash postgres instance:
+You can use these environment variables to configure your Bitbucket Server Postgres instance:
 
-* **STASH_DB_NAME:** The name of your PostgreSQL database (default: `stashdb`).
-* **STASH_DB_USER:** The user for STASH to connect to the PostgreSQL server (default `stash`).
-* **STASH_DB_PASS:** The password that STASH should use to authenticate with the PostgreSQL server (default `password`).
+* **BITBUCKET_DB_NAME:** The name of your PostgreSQL database (default: `bitbucketdb`).
+* **BITBUCKET_DB_USER:** The user for BITBUCKET to connect to the PostgreSQL server (default `bitbucket`).
+* **BITBUCKET_DB_PASS:** The password that BITBUCKET should use to authenticate with the PostgreSQL server (default `password`).
 
 They should be passed to the `docker run` command:
 
 ```bash
-docker run --name stash-postgres -d -e STASH_DB_NAME=stashdatabase -e STASH_DB_USER=stashdbuser -e STASH_DB_PASS=p455w0rd ahaasler/stash-postgres
+docker run --name bitbucket-postgres -d -e BITBUCKET_DB_NAME=bitbucketdatabase -e BITBUCKET_DB_USER=bitbucketdbuser -e BITBUCKET_DB_PASS=p455w0rd jondelmil/docker-bitbucket-postgres
 ```
 
 ## Thanks

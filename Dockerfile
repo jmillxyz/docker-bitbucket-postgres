@@ -1,13 +1,13 @@
 FROM postgres:latest
-MAINTAINER Adrian Haasler García <dev@adrianhaasler.com>
+MAINTAINER Jon Miller <jondelmil@gmail.com>
 
 # Add authentication initialization file
 COPY authentication.sh /docker-entrypoint-initdb.d/authentication.sh
 
-# Add Stash database initialization file
-COPY stash.sh /docker-entrypoint-initdb.d/stash.sh
+# Add bitbucket database initialization file
+COPY bitbucket.sh /docker-entrypoint-initdb.d/bitbucket.sh
 
 # Default configuration
-ENV STASH_DB_NAME stashdb
-ENV STASH_DB_USER stash
-ENV STASH_DB_PASS password
+ENV BITBUCKET_DB_NAME bitbucketdb
+ENV BITBUCKET_DB_USER bitbucket
+ENV BITBUCKET_DB_PASS password
